@@ -1,0 +1,32 @@
+# polarwave configuration for this project. Every setting is optional; defaults are shown.
+# polarwave re-reads this file every cycle, so edits apply live.
+
+# --- The project -----------------------------------------------------------------------------
+base_branch = "main"            # agents branch from here; finished work is merged here
+current_milestone = "M1"        # the planner proposes tasks for this milestone
+tasks_dir = "tasks"             # task files (tracked in git)
+planning_docs = ["README.md"]   # where milestones are described, for the planner
+check_command = ""              # e.g. "make test" or "just check": must pass before hand-off and PRs
+evidence = ""                   # how agents take validation screenshots, e.g. "Run `npm run shots -- <page>`."
+instructions = ""               # extra instructions added to every agent's prompt
+prompts_dir = ""                # folder with planner.md / implementer.md / reviewer.md / fixer.md overrides
+worktrees_dir = ""              # default: ../<project folder>-worktrees
+
+# --- Agents and limits ---------------------------------------------------------------------------
+claude_bin = "claude"           # Claude Code CLI on PATH (or an absolute path)
+max_concurrent = 2
+max_runs_per_day = 40
+max_tokens_per_day = 0          # 0 = no cap
+max_usage_percent = 70          # stop at 70% of any Claude usage window (5-hour, 7-day), account-wide
+max_turns_per_run = 80
+run_timeout_minutes = 60
+max_fix_attempts = 3
+poll_seconds = 120
+quiet_hours = []                # e.g. ["09:00-17:00"]: no new runs during these local times
+
+# --- GitHub ------------------------------------------------------------------------------------
+pull_requests = false           # open a PR when the reviewer agent approves a task
+issues = false                  # one GitHub issue per task: approve with the `approved` label
+remote = "origin"
+assets_branch = "polarwave-assets"  # where screenshots are stored so PRs can show them
+gh_bin = "gh"
